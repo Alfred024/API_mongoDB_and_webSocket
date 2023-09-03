@@ -13,7 +13,7 @@ router.get('/message', (req, res) =>{
     try {
         response.succes(req, res, 'Message getted succesfully', 200);
     } catch (error) {
-        response.error( req, res, error, 500 );
+        response.error( req, res, 'Error interno para obtner los mensajes', error, 500 );
     }
 });
 
