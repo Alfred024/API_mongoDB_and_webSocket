@@ -26,6 +26,19 @@ router.post('/', (req, res) =>{
         });
 });
 
+router.patch('/:id', (req, res) =>{
+    const {id} = req.params;
+    const messageText = req.body.message;
+
+    controller.patchMessage(id, messageText)
+        .then((messageUpdated) =>{
+            response.succes(req, res, messageUpdated, 200);  
+        })
+        .catch((err) =>{
+            response.error( req, res, err, 'Error en método PATCH', 500 );
+        });
+});
+
 router.delete('/', (req, res) =>{
     console.log(req.body);
     res.send('Mensaje eliminado ');

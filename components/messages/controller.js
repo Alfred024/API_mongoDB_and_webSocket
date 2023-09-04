@@ -1,3 +1,4 @@
+const { ObjectId } = require('mongodb');
 const store = require('./store');
 
 function addMessage(user, message) {
@@ -29,7 +30,21 @@ function getMessages() {
   });
 }
 
+function patchMessage(id, messageText) {
+  return new Promise(async (resolve, reject) =>{
+    console.log('ID: '+id);
+    //const idParsed = new ObjectId(id);
+    if (!id || !messageText){
+      reject(`No se encontró el message con el ID:${id}`);
+      return false;
+    }
+    const res = await store.patch(id, messageText);
+    resolve(res);
+  });
+}
+
 module.exports = {
     addMessage,
     getMessages,
+    patchMessage,
 };

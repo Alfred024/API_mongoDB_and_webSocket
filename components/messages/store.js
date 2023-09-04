@@ -28,7 +28,15 @@ async function getMessages_fromStorage() {
     return messages;
 }
 
+async function patchMessage_ofStorage(id, messageText) {
+    const messageById = await Model.findById(id);
+    messageById.message = messageText;
+    const newMessage = await messageById.save();
+    return newMessage;
+}
+
 module.exports = {
     add: addMessage_toStorage,
     getList: getMessages_fromStorage,
+    patch: patchMessage_ofStorage,
 };
