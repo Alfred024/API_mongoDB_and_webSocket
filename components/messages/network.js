@@ -41,9 +41,15 @@ router.patch('/:id', (req, res) =>{
         });
 });
 
-router.delete('/', (req, res) =>{
-    console.log(req.body);
-    res.send('Mensaje eliminado ');
+router.delete('/:id', (req, res) =>{
+    const id = req.params.id;
+    controller.deleteMessage(id)
+        .then((messadeDeleted) =>{
+            response.succes(req, res, messadeDeleted, 200);
+        })
+        .catch((err) =>{
+            response.error( req, res, 'Error en método DELETE', err, 500 );
+        });
 });
 
 module.exports = router;

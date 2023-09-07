@@ -43,8 +43,21 @@ function patchMessage(id, messageText) {
   });
 }
 
+function deleteMessage(id) {
+  return new Promise( async (resolve, reject) =>{
+    if (!id){
+      reject(`No se encontró el message con el ID:${id}`);
+      return false;
+    }
+
+    const messageDeleted = store.delete(id);
+    resolve(messageDeleted);
+  });
+}
+
 module.exports = {
     addMessage,
     getMessages,
     patchMessage,
+    deleteMessage, 
 };

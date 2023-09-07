@@ -39,8 +39,17 @@ async function patchMessage_ofStorage(id, messageText) {
     return newMessage;
 }
 
+async function deleteMessage_ofStorage(id) {
+    const messageToDelete = await Model.findByIdAndDelete(id);;
+    console.log(messageToDelete);
+    
+    //Model.deleteOne({_id: id});
+    return messageToDelete;
+}
+
 module.exports = {
     add: addMessage_toStorage,
     getList: getMessages_fromStorage,
     patch: patchMessage_ofStorage,
+    delete: deleteMessage_ofStorage,
 };
