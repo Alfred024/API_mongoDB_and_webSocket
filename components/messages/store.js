@@ -23,8 +23,12 @@ function addMessage_toStorage(message) {
     myMessage.save();
 }
 
-async function getMessages_fromStorage() {
-    const messages = await Model.find();
+async function getMessages_fromStorage(filterUser) {
+    let filter = {};
+    if (filterUser){
+        filter = {user: filterUser}
+    }
+    const messages = await Model.find(filter);
     return messages;
 }
 

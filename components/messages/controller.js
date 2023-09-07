@@ -20,10 +20,10 @@ function addMessage(user, message) {
   });
 }
 
-function getMessages() {
+function getMessages(filterUser) {
   return new Promise((resolve, reject)=>{
     if(store.getList()){
-      resolve(store.getList());
+      resolve(store.getList(filterUser));
     }else{
       reject('No fue posible obtener los mensajes');
     }
