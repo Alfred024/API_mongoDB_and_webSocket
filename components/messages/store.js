@@ -7,12 +7,20 @@ function addMessage_toStorage(message) {
 }
 
 async function getMessages_fromStorage(filterUser) {
-    let filter = {};
-    if (filterUser){
-        filter = {user: filterUser}
-    }
-    const messages = await Model.find(filter);
-    return messages;
+    return new Promise((resolve, reject) =>{
+        let filter = {};
+        if (filterUser){
+            filter = {user: filterUser}
+        }
+        const messages = Model.find(filter)
+            .populate('user')
+            .exec();
+        if(!messages){
+            reject('No se han obtenido los mensajes correctamente');
+            return false;
+        }
+        resolve(messages);
+    });
 }
 
 async function patchMessage_ofStorage(id, messageText) {
