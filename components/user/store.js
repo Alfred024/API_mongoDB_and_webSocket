@@ -14,10 +14,10 @@ async function getUsers_fromStorage(filteruser) {
     return users;
 }
 
-async function patchUser_ofStorage(id, userText) {
-    const UserById = await Model.findById(id);
-    UserById.user = userText;
-    const newUser = await UserById.save();
+async function patchUser_ofStorage(id, userNewName) {
+    const userById = await Model.findById(id);
+    userById.name = userNewName;
+    const newUser = await userById.save();
     return newUser;
 }
 

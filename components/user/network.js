@@ -7,9 +7,9 @@ const router = express.Router();
 router.get('/', (req, res) =>{
     const filterMessages = req.query.user || null;
 
-    controller.getMessages(filterMessages)
-        .then((messagesList) =>{
-            response.succes(req, res, messagesList, 200);
+    controller.getUsers(filterMessages)
+        .then((usersList) =>{
+            response.succes(req, res, usersList, 200);
         })
         .catch((err) =>{
             response.error( req, res, 'Error interno para obtner los mensajes', err, 500 );
@@ -19,9 +19,10 @@ router.get('/', (req, res) =>{
 
 router.post('/', (req, res) =>{
     body = req.body;
-    controller.addMessage(body.user, body.message)
+    console.log(body);
+    controller.addUser(body.user)
         .then(() =>{
-            response.succes(req, res, body, 200);  
+            response.succes(req, res, user, 200);  
         })
         .catch(err =>{
             response.error( req, res, err, 'Error en el controlador', 500 );
@@ -32,7 +33,7 @@ router.patch('/:id', (req, res) =>{
     const {id} = req.params;
     const messageText = req.body.message;
 
-    controller.patchMessage(id, messageText)
+    controller.patchUser(id, messageText)
         .then((messageUpdated) =>{
             response.succes(req, res, messageUpdated, 200);  
         })
@@ -43,7 +44,7 @@ router.patch('/:id', (req, res) =>{
 
 router.delete('/:id', (req, res) =>{
     const id = req.params.id;
-    controller.deleteMessage(id)
+    controller.deleteUser(id)
         .then((messadeDeleted) =>{
             response.succes(req, res, messadeDeleted, 200);
         })

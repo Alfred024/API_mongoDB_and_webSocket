@@ -1,4 +1,3 @@
-const { ObjectId } = require('mongodb');
 const store = require('./store');
 
 function addUser(user) {
@@ -8,15 +7,14 @@ function addUser(user) {
       reject('Datos incorrectos');
     }
 
-    const fulluser = {
+    const fullUser = {
       name: user,
-      user: user,
       date: new Date(),
     };
 
-    console.log(fulluser);
-    store.add(fulluser);
-    resolve(fulluser);
+    console.log(fullUser);
+    store.add(fullUser);
+    resolve(user);
   });
 }
 
@@ -30,15 +28,15 @@ function getUsers(filterUser) {
   });
 }
 
-function patchUser(id, userText) {
+function patchUser(id, userNewName) {
   return new Promise(async (resolve, reject) =>{
     console.log('ID: '+id);
     //const idParsed = new ObjectId(id);
-    if (!id || !userText){
+    if (!id || !userNewName){
       reject(`No se encontró el user con el ID:${id}`);
       return false;
     }
-    const res = await store.patch(id, userText);
+    const res = await store.patch(id, userNewName);
     resolve(res);
   });
 }

@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
-const messageSchema = mongoose.Schema({
+const userSchema = mongoose.Schema({
     name: String, 
 });
 
-const messageModel = mongoose.model('User', messageSchema);
+const userModel = mongoose.model('User', userSchema);
 
-module.exports = messageModel;
+module.exports = userModel;
