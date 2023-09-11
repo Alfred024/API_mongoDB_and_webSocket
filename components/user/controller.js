@@ -1,21 +1,16 @@
 const store = require('./store');
 
-function addUser(user) {
-  return new Promise((resolve, reject) =>{
-    if( !user ){
-      console.log('origen: addUser \nNo se pasó el usuario');
-      reject('Datos incorrectos');
-    }
+function addUser(name) {
+  if( !name ){
+    console.log('origen: addUser \nNo se pasó el usuario');
+    return Promise.reject('Datos incorrectos');
+  }
 
-    const fullUser = {
-      name: user,
-      date: new Date(),
-    };
-
-    console.log(fullUser);
-    store.add(fullUser);
-    resolve(user);
-  });
+  const fullUser = {
+    name,
+  };
+  
+  return store.add(fullUser);
 }
 
 function getUsers(filterUser) {

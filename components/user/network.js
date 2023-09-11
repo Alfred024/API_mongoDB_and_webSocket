@@ -18,10 +18,9 @@ router.get('/', (req, res) =>{
 
 
 router.post('/', (req, res) =>{
-    body = req.body;
-    console.log(body);
-    controller.addUser(body.user)
-        .then(() =>{
+    this.name = req.body.name;
+    controller.addUser(this.name)
+        .then((user) =>{
             response.succes(req, res, user, 200);  
         })
         .catch(err =>{

@@ -2,7 +2,7 @@ const Model = require('./model');
 
 function addUser_toStorage(user) {
     const myUser = new Model(user);
-    myUser.save();
+    return myUser.save();
 }
 
 async function getUsers_fromStorage(filteruser) {
