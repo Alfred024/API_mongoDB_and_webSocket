@@ -1,5 +1,5 @@
 const express = require('express');
-const messageRoute = require('../components/messages/network');
+const messageRoute = require('../components/message/network');
 const userRoute = require('../components/user/network');
 
 function routerApi(server) {

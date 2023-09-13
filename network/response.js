@@ -3,7 +3,7 @@ exports.succes = function ( req, res, message, status ) {
         {
             "error": false,
             "status": status,
-            "message": message,
+            "content": message,
         }
     )
 };

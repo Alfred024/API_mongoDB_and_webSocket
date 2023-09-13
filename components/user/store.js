@@ -14,7 +14,7 @@ async function getUsers_fromStorage(filteruser) {
     return users;
 }
 
-async function patchUser_ofStorage(id, userNewName) {
+async function putUser_ofStorage(id, userNewName) {
     const userById = await Model.findById(id);
     userById.name = userNewName;
     const newUser = await userById.save();
@@ -32,6 +32,6 @@ async function deleteUser_ofStorage(id) {
 module.exports = {
     add: addUser_toStorage,
     getList: getUsers_fromStorage,
-    patch: patchUser_ofStorage,
+    put: putUser_ofStorage,
     delete: deleteUser_ofStorage,
 };

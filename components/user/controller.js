@@ -23,7 +23,7 @@ function getUsers(filterUser) {
   });
 }
 
-function patchUser(id, userNewName) {
+function putUser(id, userNewName) {
   return new Promise(async (resolve, reject) =>{
     console.log('ID: '+id);
     //const idParsed = new ObjectId(id);
@@ -31,7 +31,7 @@ function patchUser(id, userNewName) {
       reject(`No se encontró el user con el ID:${id}`);
       return false;
     }
-    const res = await store.patch(id, userNewName);
+    const res = await store.put(id, userNewName);
     resolve(res);
   });
 }
@@ -51,6 +51,6 @@ function deleteUser(id) {
 module.exports = {
     addUser,
     getUsers,
-    patchUser,
+    putUser,
     deleteUser, 
 };

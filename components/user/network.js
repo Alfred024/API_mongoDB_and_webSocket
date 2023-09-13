@@ -28,11 +28,11 @@ router.post('/', (req, res) =>{
         });
 });
 
-router.patch('/:id', (req, res) =>{
+router.put('/:id', (req, res) =>{
     const {id} = req.params;
-    const messageText = req.body.message;
+    const name = req.body.new_name;
 
-    controller.patchUser(id, messageText)
+    controller.putUser(id, name)
         .then((messageUpdated) =>{
             response.succes(req, res, messageUpdated, 200);  
         })
