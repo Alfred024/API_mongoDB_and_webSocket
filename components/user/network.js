@@ -44,8 +44,8 @@ router.put('/:id', (req, res) =>{
 router.delete('/:id', (req, res) =>{
     const id = req.params.id;
     controller.deleteUser(id)
-        .then((messadeDeleted) =>{
-            response.succes(req, res, messadeDeleted, 200);
+        .then((userDeleted) =>{
+            response.succes(req, res, userDeleted, 200);
         })
         .catch((err) =>{
             response.error( req, res, 'Error en método DELETE', err, 500 );

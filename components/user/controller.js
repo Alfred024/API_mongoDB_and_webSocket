@@ -1,5 +1,15 @@
 const store = require('./store');
 
+function getUsers(filterUser) {
+  return new Promise((resolve, reject)=>{
+    if(store.getList()){
+      resolve(store.getList(filterUser));
+    }else{
+      reject('No fue posible obtener los mensajes');
+    }
+  });
+}
+
 function addUser(name) {
   if( !name ){
     console.log('origen: addUser \nNo se pasó el usuario');
@@ -11,16 +21,6 @@ function addUser(name) {
   };
   
   return store.add(fullUser);
-}
-
-function getUsers(filterUser) {
-  return new Promise((resolve, reject)=>{
-    if(store.getList()){
-      resolve(store.getList(filterUser));
-    }else{
-      reject('No fue posible obtener los mensajes');
-    }
-  });
 }
 
 function putUser(id, userNewName) {

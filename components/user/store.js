@@ -1,4 +1,5 @@
 const Model = require('./model');
+const MessagesUserModel = require('../message/model');
 
 function addUser_toStorage(user) {
     const myUser = new Model(user);
@@ -22,10 +23,13 @@ async function putUser_ofStorage(id, userNewName) {
 }
 
 async function deleteUser_ofStorage(id) {
-    const userToDelete = await Model.findByIdAndDelete(id);;
+    const userToDelete = await Model.findByIdAndDelete(id);
+
+    //Quiero borrar todos los mensajes del usuario cuando este se elimine, la forma que se me ocurrió era pasar 
+    //cambiar el modelo de usuario y agregarle un tipo array de mensajes, y ahí ir metiendo los mensajes que vaya
+    //creando, o si no 
+
     console.log(userToDelete);
-    
-    //Model.deleteOne({_id: id});
     return userToDelete;
 }
 
