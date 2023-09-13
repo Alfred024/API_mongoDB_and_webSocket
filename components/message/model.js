@@ -6,10 +6,15 @@ const messageSchema = mongoose.Schema({
         type: Schema.ObjectId, 
         ref: 'User',
     }, 
+    chat: {
+        type: Schema.ObjectId,
+        ref: 'Chat',
+    },
     message: {
         type: String,
         require: true,
     },
+    file: String,
     date: Date,
 });
 
