@@ -19,7 +19,7 @@ function addChat(users) {
 
 function getChats() {
   return new Promise((resolve, reject)=>{
-    if(store.getList()){
+    if(store.getChats()){
       resolve(store.getChats());
     }else{
       reject('No fue posible obtener los mensajes');
@@ -57,6 +57,6 @@ function deleteChat(id) {
 module.exports = {
     addChat,
     getChats,
-    patchChat,
+    //patchChat,
     deleteChat, 
 };

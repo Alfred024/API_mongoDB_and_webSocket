@@ -15,10 +15,10 @@ router.get('/', (req, res) =>{
         });
 });
 
-
+//Crea un nuevo epsacio de chat
 router.post('/', (req, res) =>{
-    body = req.body;
-    controller.addMessage(body.user, body.message)
+    users = req.body.users;
+    controller.addChat(users)
         .then(() =>{
             response.succes(req, res, body, 200);  
         })
@@ -29,7 +29,7 @@ router.post('/', (req, res) =>{
 
 router.delete('/:id', (req, res) =>{
     const id = req.params.id;
-    controller.deleteMessage(id)
+    controller.deleteChat(id)
         .then((messadeDeleted) =>{
             response.succes(req, res, messadeDeleted, 200);
         })

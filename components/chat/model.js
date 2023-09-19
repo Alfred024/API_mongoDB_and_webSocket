@@ -12,6 +12,12 @@ const chatSchema = mongoose.Schema({
         type: String,
         require: true,
     },
+    messages: [
+        {
+            type: Schema.ObjectId, 
+            ref: 'Message',
+        } 
+    ]
 });
 
 const chatModel = mongoose.model('Chat', chatSchema);
