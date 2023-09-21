@@ -7,7 +7,7 @@ function routerApi(server) {
     // const globalRouter = express.Router();
     // server.use('/api_demo/v1', globalRouter);
     // globalRouter.use('/message', messageRoute);
-    server.use('/message', messageRoute);
+    server.use('/messages', messageRoute);
     server.use('/users', userRoute);
     server.use('/chats', chatsRoute);
 }   

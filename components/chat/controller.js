@@ -1,6 +1,6 @@
 const store = require('./store');
 
-function addChat(users) {
+function addChat(users, chat) {
   return new Promise((resolve, reject) =>{
     if( !users || users.length < 2){
       console.log('origen: addChat \nNo se pasó el usuaroi o mensaje');
@@ -8,6 +8,7 @@ function addChat(users) {
     }
 
     const fullChat = {
+      chat: chat,
       users: users,
     };
 

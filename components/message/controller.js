@@ -1,20 +1,20 @@
 const store = require('./store');
 
-function addMessage(user, message) {
+function addMessage(body) {
   return new Promise((resolve, reject) =>{
-    if( !user || !message){
+    if( !body.user || !body.chat || !body.message){
       console.log('origen: addMessage \nNo se pasó el usuaroi o mensaje');
       reject('Datos incorrectos');
     }
 
     const fullMessage = {
-      user: user,
-      message: message,
+      user: body.user,
+      chat: body.chat,
+      message: body.message,
       date: new Date(),
     };
 
-    console.log(fullMessage);
-    store.add(fullMessage);
+    store.add(fullMessage, fullMessage.chat);
     resolve(fullMessage);
   });
 }

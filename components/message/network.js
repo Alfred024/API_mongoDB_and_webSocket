@@ -19,7 +19,7 @@ router.get('/', (req, res) =>{
 
 router.post('/', (req, res) =>{
     body = req.body;
-    controller.addMessage(body.user, body.message)
+    controller.addMessage(body)
         .then(() =>{
             response.succes(req, res, body, 200);  
         })

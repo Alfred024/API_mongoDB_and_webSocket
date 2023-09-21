@@ -5,16 +5,18 @@ const messageSchema = mongoose.Schema({
     user: {
         type: Schema.ObjectId, 
         ref: 'User',
+        require: true,
     }, 
     chat: {
         type: Schema.ObjectId,
         ref: 'Chat',
+        require: true,
     },
     message: {
         type: String,
         require: true,
     },
-    file: String,
+    //file: String,
     date: Date,
 });
 

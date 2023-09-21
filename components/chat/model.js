@@ -10,6 +10,7 @@ const chatSchema = mongoose.Schema({
             require: true
         }
     ],
+    //Es buena idea que guarde sólo el ID del mensaje, o que guarde todo el mensaje sería mejor
     messages: [
         {
             type: Schema.ObjectId, 

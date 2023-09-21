@@ -1,9 +1,17 @@
 //Mongoose Model
 const Model = require('./model');
+//Para agregar a el chat con el X id el mensaje correspondiente
+const ChatModel = require('../chat/model');
 
-function addMessage_toStorage(message) {
-    const myMessage = new Model(message);
+async function addMessage_toStorage(message, chatID) {
+    //console.log('ID DEL CHAT: '+message.chat);
+    const myMessage = await new Model(message);
     myMessage.save();
+
+    //El mensaje también debemos guardarlo en el array de mensajes del chat correspondiente
+    const chat = await ChatModel.findById(chatID);
+    chat.messages.push(myMessage);
+    chat.save();
 }
 
 async function getMessages_fromStorage(filterUser) {

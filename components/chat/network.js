@@ -17,8 +17,9 @@ router.get('/', (req, res) =>{
 
 //Crea un nuevo epsacio de chat
 router.post('/', (req, res) =>{
+    chat = req.body.chat;
     users = req.body.users;
-    controller.addChat(users)
+    controller.addChat(users, chat)
         .then(() =>{
             response.succes(req, res, body, 200);  
         })
