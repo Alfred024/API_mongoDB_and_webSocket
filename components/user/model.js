@@ -1,14 +1,12 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+//Usuario tiene un nombre
 const userSchema = mongoose.Schema({
-    name: String, 
-    chats: [
-        {
-            type: Schema.ObjectId, 
-            ref: 'Chat',
-        }
-    ]
+    name: {
+        type: String,
+        require: true
+    }, 
 });
 
 const userModel = mongoose.model('User', userSchema);

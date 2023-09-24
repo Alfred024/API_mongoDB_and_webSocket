@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+//Un chat va a tener usuarios
 const chatSchema = mongoose.Schema({
     chat: String,
     users: [
@@ -10,13 +11,6 @@ const chatSchema = mongoose.Schema({
             require: true
         }
     ],
-    //Es buena idea que guarde sólo el ID del mensaje, o que guarde todo el mensaje sería mejor
-    messages: [
-        {
-            type: Schema.ObjectId, 
-            ref: 'Message',
-        } 
-    ]
 });
 
 const chatModel = mongoose.model('Chat', chatSchema);

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+//Los mensajes tienen un chat y un usario 
 const messageSchema = mongoose.Schema({
     user: {
         type: Schema.ObjectId, 
