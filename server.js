@@ -11,7 +11,7 @@ app.use(express.urlencoded({extended : false}));
 socket.connectToSocket(server);
 router(app);
 
-app.use('/app', express.static('public'));
+app.use(express.static('public'));
 
 server.listen(2023, () =>{
     console.log('Server ejecutandose en el puerto local 2023');
