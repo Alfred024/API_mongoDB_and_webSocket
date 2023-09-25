@@ -1,28 +1,36 @@
 //Mongoose Model
 const Model = require('./model');
-//Para agregar a el chat con el X id el mensaje correspondiente
-const ChatModel = require('../chat/model');
 
-async function addMessage_toStorage(message, chatID) {
-    //console.log('ID DEL CHAT: '+message.chat);
+async function addMessage_toStorage(message) {
     const myMessage = await new Model(message);
     myMessage.save();
-
-    //El mensaje también debemos guardarlo en el array de mensajes del chat correspondiente
-    const chat = await ChatModel.findById(chatID);
-    chat.messages.push(myMessage);
-    chat.save();
 }
 
-async function getMessages_fromStorage(filterUser) {
+async function getMessages_fromStorage() {
     return new Promise((resolve, reject) =>{
-        let filter = {};
-        if (filterUser){
-            filter = {user: filterUser}
+        const messages = Model.find();
+        if(!messages){
+            reject('No se han obtenido los mensajes correctamente');
+            return false;
         }
-        const messages = Model.find(filter)
-            .populate('user')
-            .exec();
+        resolve(messages);
+    });
+}
+
+async function getMessagesByChatId_fromStorage(chatId) {
+    return new Promise((resolve, reject) =>{
+        const messages = Model.find({ chat: chatId });
+        if(!messages){
+            reject('No se han obtenido los mensajes correctamente');
+            return false;
+        }
+        resolve(messages);
+    });
+}
+
+async function getMessagesByUserId_fromStorage(userId) {
+    return new Promise((resolve, reject) =>{
+        const messages = Model.find({ user: userId });
         if(!messages){
             reject('No se han obtenido los mensajes correctamente');
             return false;
@@ -49,6 +57,8 @@ async function deleteMessage_ofStorage(id) {
 module.exports = {
     add: addMessage_toStorage,
     getList: getMessages_fromStorage,
+    getList_ByChatId: getMessagesByChatId_fromStorage,
+    getList_ByUserId: getMessagesByUserId_fromStorage,
     patch: patchMessage_ofStorage,
     delete: deleteMessage_ofStorage,
 };

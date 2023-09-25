@@ -2,10 +2,10 @@ const store = require('./store');
 
 function getUsers(filterUser) {
   return new Promise((resolve, reject)=>{
-    if(store.getList()){
-      resolve(store.getList(filterUser));
+    if(store.get()){
+      resolve(store.get(filterUser));
     }else{
-      reject('No fue posible obtener los mensajes');
+      reject('Verifique que haya usuarios creados');
     }
   });
 }

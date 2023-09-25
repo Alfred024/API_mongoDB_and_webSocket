@@ -12,16 +12,16 @@ function addChat(users, chat) {
       users: users,
     };
 
-    console.log(fullChat);
+    console.log('fullChat');
     store.add(fullChat);
     resolve(fullChat);
   });
 }
 
-function getChats() {
+function getChats(chatId) {
   return new Promise((resolve, reject)=>{
     if(store.getChats()){
-      resolve(store.getChats());
+      resolve(store.getChats(chatId));
     }else{
       reject('No fue posible obtener los mensajes');
     }

@@ -7,11 +7,15 @@ function addUser_toStorage(user) {
 }
 
 async function getUsers_fromStorage(filteruser) {
-    let filter = {};
+    //let filter = {};
+    let users;
     if (filteruser){
-        filter = {user: filteruser}
+        console.log('Sí hay flitro'+'  ---> '+filteruser);
+        //filter = {user: filteruser}
+        users = await Model.findById(filteruser);
+    }else{
+        users = await Model.find();
     }
-    const users = await Model.find(filter);
     return users;
 }
 
@@ -35,7 +39,7 @@ async function deleteUser_ofStorage(id) {
 
 module.exports = {
     add: addUser_toStorage,
-    getList: getUsers_fromStorage,
+    get: getUsers_fromStorage,
     put: putUser_ofStorage,
     delete: deleteUser_ofStorage,
 };

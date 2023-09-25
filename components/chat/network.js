@@ -6,7 +6,9 @@ const router = express.Router();
 
 router.get('/', (req, res) =>{
 
-    controller.getChats()
+    const chatId = req.query.id || null;
+    console.log(chatId);
+    controller.getChats(chatId)
         .then((chats) =>{
             response.succes(req, res, chats, 200);
         })

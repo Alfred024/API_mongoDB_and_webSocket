@@ -1,31 +1,51 @@
 const store = require('./store');
 
+function getMessages() {
+  return new Promise((resolve, reject)=>{
+    if(store.getList()){
+      resolve(store.getList());
+    }else{
+      reject('No fue posible obtener los mensajes');
+    }
+  });
+}
+
+function getMessagesByChatId(chatId) {
+  return new Promise((resolve, reject)=>{
+    if(store.getList_ByChatId(chatId)){
+      resolve(store.getList_ByChatId(chatId));
+    }else{
+      reject(`No se encontró el chat con el id ${chatId}`);
+    }
+  });
+}
+
+function getMessagesByUserId(userId) {
+  return new Promise((resolve, reject)=>{
+    if(store.getList_ByChatId(userId)){
+      resolve(store.getList_ByChatId(userId));
+    }else{
+      reject(`No se encontró el chat con el id ${userId}`);
+    }
+  });
+}
+
 function addMessage(body) {
   return new Promise((resolve, reject) =>{
-    if( !body.user || !body.chat || !body.message){
+    if( !body.userId || !body.chatId || !body.message){
       console.log('origen: addMessage \nNo se pasó el usuaroi o mensaje');
       reject('Datos incorrectos');
     }
 
     const fullMessage = {
-      user: body.user,
-      chat: body.chat,
+      user: body.userId,
+      chat: body.chatId,
       message: body.message,
       date: new Date(),
     };
 
-    store.add(fullMessage, fullMessage.chat);
+    store.add(fullMessage);
     resolve(fullMessage);
-  });
-}
-
-function getMessages(filterUser) {
-  return new Promise((resolve, reject)=>{
-    if(store.getList()){
-      resolve(store.getList(filterUser));
-    }else{
-      reject('No fue posible obtener los mensajes');
-    }
   });
 }
 
@@ -57,6 +77,8 @@ function deleteMessage(id) {
 module.exports = {
     addMessage,
     getMessages,
+    getMessagesByChatId,
+    getMessagesByUserId,
     patchMessage,
     deleteMessage, 
 };

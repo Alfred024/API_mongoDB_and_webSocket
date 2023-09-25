@@ -5,9 +5,7 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', (req, res) =>{
-    const filterMessages = req.query.user || null;
-
-    controller.getMessages(filterMessages)
+    controller.getMessages()
         .then((messagesList) =>{
             response.succes(req, res, messagesList, 200);
         })
@@ -16,6 +14,29 @@ router.get('/', (req, res) =>{
         });
 });
 
+//Obtener los mensajaes de un chat específico
+router.get('/:chatId', (req, res)=>{
+    const chatId = req.params.chatId;
+    controller.getMessagesByChatId(chatId)
+        .then((messagesList) =>{
+            response.succes(req, res, messagesList, 200);
+        })
+        .catch((err) =>{
+            response.error( req, res, `Error interno para obtner los mensajes del chat con ID ${chatId}`, err, 500 );
+        });
+});
+
+// //Obtener los mensajaes de un usuario específico
+// router.get('/:userId', (req, res)=>{
+//     const chatId = req.params.userId;
+//     controller.getMessagesByUserId(userId)
+//         .then((messagesList) =>{
+//             response.succes(req, res, messagesList, 200);
+//         })
+//         .catch((err) =>{
+//             response.error( req, res, `Error interno para obtner los mensajes del usuario con ID ${chatId}`, err, 500 );
+//         });
+// });
 
 router.post('/', (req, res) =>{
     body = req.body;

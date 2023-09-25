@@ -2,15 +2,26 @@
 const Model = require('./model');
 
 function addChat_toStorage(chat) {
+    console.log("Guardando chat...");
     const mychat = new Model(chat);
     return mychat.save();
 }
 
-async function getChats_fromStorage() {
+async function getChats_fromStorage(chatId) {
     return new Promise((resolve, reject) =>{
-        const chats = Model.find()
+        let chats;
+        if(chatId){
+            console.log("Sí se pasó un id");
+            chats = Model.findById(chatId)
             .populate('users')
             .exec();
+        }else{
+            console.log("Noo se pasó un id");
+            chats = Model.find()
+            .populate('users')
+            .exec();
+        }
+        
         if(!chats){
             reject('No se han obtenido los mensajes correctamente');
             return false;

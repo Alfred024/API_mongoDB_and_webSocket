@@ -17,7 +17,6 @@ const messageSchema = mongoose.Schema({
         type: String,
         require: true,
     },
-    //file: String,
     date: Date,
 });
 
